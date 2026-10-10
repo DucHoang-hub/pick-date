@@ -58,6 +58,35 @@ Một trang web hẹn hò lãng mạn tone hồng pastel ngọt ngào, hiển th
 
 ---
 
+## 🔔 Nhận thông báo "ting ting" về Telegram
+
+Mỗi khi người ấy bấm **"Xác nhận lựa chọn"**, hệ thống sẽ tự động gửi thông báo trực tiếp về Telegram trên điện thoại của bạn!
+
+### 2 bước cài đặt nhanh:
+1. **Lấy BOT TOKEN:**
+   - Mở Telegram, tìm kiếm `@BotFather`.
+   - Gõ `/newbot`, nhập tên hiển thị và username cho bot (kết thúc bằng chữ `bot`).
+   - Copy đoạn **API Token** (dạng `123456789:ABCdefGhIJK...`).
+   - Nhấn vào link bot bạn vừa tạo và bấm **/start** để bắt đầu chat với bot.
+
+2. **Lấy CHAT ID của bạn:**
+   - Mở Telegram, tìm kiếm `@userinfobot` (hoặc `@getmyid_bot`).
+   - Bấm **/start**, bot sẽ trả về số `Id` của bạn (ví dụ: `987654321`).
+
+3. **Điền thông tin:**
+   - **Khi chạy ở máy local:** Mở file [config.js](file:///d:/pick-date/config.js) và dán `TELEGRAM_BOT_TOKEN` cùng `TELEGRAM_CHAT_ID` vào:
+     ```javascript
+     module.exports = {
+       TELEGRAM_BOT_TOKEN: '123456789:ABCdefGhIJK...',
+       TELEGRAM_CHAT_ID: '987654321'
+     };
+     ```
+   - **Khi Deploy lên Server (Render, Railway, Vercel, VPS,...):** Vào mục **Environment Variables** (Biến môi trường) trên trang quản lý server và thêm 2 biến:
+     - `TELEGRAM_BOT_TOKEN` = `<Token của bạn>`
+     - `TELEGRAM_CHAT_ID` = `<Chat ID của bạn>`
+
+---
+
 ## 🛠️ Tùy chỉnh thông tin cá nhân
 
 Tất cả các nội dung bạn cần điền nằm ở:

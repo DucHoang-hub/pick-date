@@ -300,12 +300,14 @@ btnRestart.addEventListener('click', () => {
 // ==========================================
 
 const canvas = document.getElementById('confettiCanvas');
-const ctx = canvas.getContext('2d');
+const ctx = canvas ? canvas.getContext('2d') : null;
 let hearts = [];
 
 function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  if (canvas) {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
 }
 window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
@@ -353,6 +355,7 @@ class HeartParticle {
 let animRunning = false;
 
 function launchConfetti() {
+  if (!ctx || !canvas) return;
   hearts = [];
   for (let i = 0; i < 45; i++) {
     setTimeout(() => {
@@ -367,6 +370,7 @@ function launchConfetti() {
 }
 
 function animateConfetti() {
+  if (!ctx || !canvas) return;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   for (let i = hearts.length - 1; i >= 0; i--) {
     hearts[i].update();
@@ -384,19 +388,21 @@ function animateConfetti() {
   }
 }
 
-// Khởi tạo nền trái tim lơ lửng nhẹ nhàng
-const floatingContainer = document.getElementById('floatingHearts');
-for (let i = 0; i < 15; i++) {
-  const heart = document.createElement('div');
-  heart.className = 'heart-particle';
-  heart.textContent = ['💖', '💕', '🌸', '✨', '🤍'][Math.floor(Math.random() * 5)];
-  heart.style.left = `${Math.random() * 100}vw`;
-  heart.style.animationDuration = `${6 + Math.random() * 7}s`;
-  heart.style.animationDelay = `${Math.random() * 5}s`;
-  heart.style.fontSize = `${14 + Math.random() * 14}px`;
-  floatingContainer.appendChild(heart);
-}
-
 // Khởi tạo ban đầu
 renderCalendar(currentCalMonth, currentCalYear);
 updateDateTimeSummary();
+
+// Khởi tạo nền trái tim lơ lửng nhẹ nhàng (nếu container tồn tại)
+const floatingContainer = document.getElementById('floatingHearts');
+if (floatingContainer) {
+  for (let i = 0; i < 15; i++) {
+    const heart = document.createElement('div');
+    heart.className = 'heart-particle';
+    heart.textContent = ['💖', '💕', '🌸', '✨', '🤍'][Math.floor(Math.random() * 5)];
+    heart.style.left = `${Math.random() * 100}vw`;
+    heart.style.animationDuration = `${6 + Math.random() * 7}s`;
+    heart.style.animationDelay = `${Math.random() * 5}s`;
+    heart.style.fontSize = `${14 + Math.random() * 14}px`;
+    floatingContainer.appendChild(heart);
+  }
+}

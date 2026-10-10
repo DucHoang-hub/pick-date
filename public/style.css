@@ -39,7 +39,7 @@ body {
 }
 
 /* Hiệu ứng trái tim rơi lơ lửng */
-.floating-hearts {
+/* .floating-hearts {
   position: fixed;
   top: 0;
   left: 0;
@@ -71,7 +71,7 @@ body {
     transform: translateY(-10vh) scale(1.2) rotate(360deg);
     opacity: 0;
   }
-}
+} */
 
 /* ===================================================
    KHUNG GIAO DIỆN DI ĐỘNG Ở GIỮA MÀN HÌNH (MOBILE FRAME)
