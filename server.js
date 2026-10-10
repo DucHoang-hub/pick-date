@@ -101,7 +101,12 @@ app.get('/api/appointment', (req, res) => {
   res.json({ success: true, history: [] });
 });
 
-// Khởi chạy server
-app.listen(PORT, () => {
-  console.log(`🌸 Server đang chạy tại: http://localhost:${PORT}`);
-});
+// Khởi chạy server (chạy local)
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`🌸 Server đang chạy tại: http://localhost:${PORT}`);
+  });
+}
+
+// Export cho Vercel Serverless Function
+module.exports = app;
