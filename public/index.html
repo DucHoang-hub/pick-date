@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dành riêng cho Hai Anh ❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Hiệu ứng trái tim rơi lơ lửng trong nền -->
+  <div class="floating-hearts" id="floatingHearts"></div>
+
+  <!-- Khung hiển thị mô phỏng điện thoại ở giữa màn hình -->
+  <main class="mobile-frame">
+    <!-- SCREEN 1: LỜI MỜI HẸN HÒ -->
+    <section id="screen-1" class="screen active">
+      <div class="header-tag">
+        <span class="pink-header">Dành riêng cho Hai Anh</span>
+      </div>
+
+      <div class="custom-titles">
+        <!-- <h1> và <h2> nằm dưới header để bạn thoải mái điền sau -->
+        <h1 class="screen1-h1">Cuối tuần này em có rảnh hông? ✨</h1>
+        <h2 class="screen1-h2">Anh muốn mời em đi hẹn hò một bữa thật vui nè 💕</h2>
+      </div>
+
+      <!-- Khung chứa ảnh -->
+      <div class="photo-container">
+        <div class="photo-wrapper">
+          <img id="main-photo" src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=600&auto=format&fit=crop&q=80" alt="Dành cho em" />
+          <div class="photo-heart-badge">💖</div>
+        </div>
+        <!-- Caption dưới ảnh để bạn điền sau -->
+        <p class="photo-caption">"Mong chờ nụ cười xinh của em vào buổi tối hẹn hò ✨"</p>
+      </div>
+
+      <!-- Khu vực 2 buttons -->
+      <div class="action-buttons-container" id="escapeArea">
+        <button id="btn-yes" class="btn btn-primary">
+          <span>Dạ có 💕</span>
+        </button>
+        <button id="btn-no" class="btn btn-secondary">
+          <span>Để em nghĩ đã</span>
+        </button>
+      </div>
+      <p id="funny-hint" class="funny-hint"></p>
+    </section>
+
+    <!-- SCREEN 2: CHỌN NGÀY, GIỜ VÀ MÓN -->
+    <section id="screen-2" class="screen">
+      <div class="header-tag">
+        <span class="pink-header">Chọn ngày, giờ và món nè</span>
+      </div>
+
+      <div class="custom-titles">
+        <!-- <h1> và <h2> nằm dưới header để bạn thoải mái điền sau -->
+        <h1 class="screen2-h1">Lên kế hoạch buổi hẹn hò 🌸</h1>
+        <h2 class="screen2-h2">Em cứ chọn ngày giờ rảnh nhất và món em thèm nha!</h2>
+      </div>
+
+      <!-- Bảng lịch chọn ngày -->
+      <div class="section-card calendar-card">
+        <div class="calendar-header">
+          <button id="prevMonth" class="cal-nav-btn" title="Tháng trước">&lt;</button>
+          <div class="cal-month-title" id="calendarMonthYear">Tháng 10, 2026</div>
+          <button id="nextMonth" class="cal-nav-btn" title="Tháng sau">&gt;</button>
+        </div>
+        <div class="calendar-weekdays">
+          <span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span>
+        </div>
+        <div class="calendar-days" id="calendarDays"></div>
+      </div>
+
+      <!-- Mục chọn giờ -->
+      <div class="section-card time-card">
+        <div class="section-title">⏰ Chọn giờ hẹn</div>
+        <div class="time-presets" id="timePresets">
+          <button type="button" class="time-chip" data-time="18:00">18:00</button>
+          <button type="button" class="time-chip" data-time="18:30">18:30</button>
+          <button type="button" class="time-chip" data-time="19:00">19:00</button>
+          <button type="button" class="time-chip" data-time="19:30">19:30</button>
+          <button type="button" class="time-chip active" data-time="20:00">20:00</button>
+          <button type="button" class="time-chip" data-time="20:30">20:30</button>
+        </div>
+        <div class="custom-time-wrap">
+          <label for="customTimeInput">Hoặc giờ khác:</label>
+          <input type="time" id="customTimeInput" value="20:05">
+        </div>
+      </div>
+
+      <!-- Dòng hiển thị lại ngày và giờ đã chọn -->
+      <div class="selection-summary-badge" id="dateTimeSummary">
+        ✨ <span>Đã chọn: Thứ Hai, 14/09/2026 lúc 20:05</span>
+      </div>
+
+      <!-- List chọn món -->
+      <div class="section-card food-card">
+        <div class="section-title">🍽️ Em muốn ăn món gì nè?</div>
+        <div class="food-grid" id="foodGrid">
+          <div class="food-item active" data-food="Đồ Hàn" data-icon="🥘">
+            <span class="food-icon">🥘</span>
+            <span class="food-name">Đồ Hàn</span>
+          </div>
+          <div class="food-item" data-food="Đồ Nướng BBQ" data-icon="🥩">
+            <span class="food-icon">🥩</span>
+            <span class="food-name">Đồ nướng BBQ</span>
+          </div>
+          <div class="food-item" data-food="Đồ Nhật" data-icon="🍣">
+            <span class="food-icon">🍣</span>
+            <span class="food-name">Đồ Nhật</span>
+          </div>
+          <div class="food-item" data-food="Lẩu Haidilao" data-icon="🍲">
+            <span class="food-icon">🍲</span>
+            <span class="food-name">Lẩu Haidilao</span>
+          </div>
+          <div class="food-item" data-food="Pizza & Mì Ý" data-icon="🍕">
+            <span class="food-icon">🍕</span>
+            <span class="food-name">Pizza & Mì Ý</span>
+          </div>
+          <div class="food-item" data-food="Trà sữa & Cafe" data-icon="🧋">
+            <span class="food-icon">🧋</span>
+            <span class="food-name">Trà sữa & Cafe</span>
+          </div>
+          <div class="food-item" data-food="Món Việt" data-icon="🍜">
+            <span class="food-icon">🍜</span>
+            <span class="food-name">Món Việt</span>
+          </div>
+          <div class="food-item" data-food="Ăn vặt vỉa hè" data-icon="🍢">
+            <span class="food-icon">🍢</span>
+            <span class="food-name">Ăn vặt vỉa hè</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Button xác nhận -->
+      <div class="confirm-action">
+        <button id="btn-confirm" class="btn btn-primary full-width">
+          Xác nhận lựa chọn ✨
+        </button>
+      </div>
+    </section>
+
+    <!-- SCREEN 3: FORM TỔNG KẾT (THEO ẢNH MẪU) -->
+    <section id="screen-3" class="screen">
+      <!-- Badge Yayyy -->
+      <div class="yay-badge-container">
+        <span class="yay-pill">Yayyy ❤️</span>
+      </div>
+
+      <!-- Tiêu đề Được ruiiiii -->
+      <h2 class="confirmed-title">Được ruiiiii ✨</h2>
+
+      <!-- Khung thông điệp 1 -->
+      <div class="receipt-card speech-bubble">
+        <p class="bubble-main-text" id="finalMessageText">
+          Được rui, vậy <strong id="sumDayWeek">Thứ Hai</strong>, <strong id="sumFullDate">14/09/2026</strong> mình đi ăn <strong id="sumFoodName">Đồ Hàn</strong> lúc <strong id="sumTime">20:05</strong> nha ❤️
+        </p>
+        <p class="bubble-sub-text">
+          Anh chốt lịch rồi đó, em chỉ cần chuẩn bị xinh xinh là được thôi ✨
+        </p>
+      </div>
+
+      <!-- Khung bảng chi tiết dạng nét đứt như ảnh -->
+      <div class="receipt-card details-table">
+        <div class="table-row">
+          <span class="row-label">Người mời</span>
+          <span class="row-value" id="inviterName">Đạo</span>
+        </div>
+        <div class="table-row">
+          <span class="row-label">Người được mời</span>
+          <span class="row-value" id="inviteeName">Hai Anh</span>
+        </div>
+        <div class="table-row">
+          <span class="row-label">Ngày</span>
+          <span class="row-value" id="tableDate">Thứ Hai, 14/09/2026</span>
+        </div>
+        <div class="table-row">
+          <span class="row-label">Giờ</span>
+          <span class="row-value" id="tableTime">20:05</span>
+        </div>
+        <div class="table-row">
+          <span class="row-label">Món</span>
+          <span class="row-value" id="tableFood">Đồ Hàn</span>
+        </div>
+      </div>
+
+      <!-- Button Chọn lại nè -->
+      <div class="restart-action">
+        <button id="btn-restart" class="btn btn-outline full-width">
+          Chọn lại nè
+        </button>
+        <p class="bottom-playful-note">
+          Anh chốt lịch rồi đó nha, không được bùng đâu đó 😆❤️
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Canvas hiệu ứng pháo hoa tim rơi -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <script src="app.js"></script>
+</body>
+</html>
