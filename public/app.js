@@ -150,23 +150,17 @@ function renderCalendar(month, year) {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  // Giới hạn 3 tuần (21 ngày) tính từ ngày hiện tại
-  const maxDate = new Date(today);
-  maxDate.setDate(maxDate.getDate() + 21);
-  maxDate.setHours(23, 59, 59, 999);
-
-  // Điều khiển nút chuyển tháng trước / sau
+  // Chỉ khóa nút lùi tháng nếu đang ở tháng/năm hiện tại (tránh lùi về quá khứ)
   const currentMonthStart = new Date(year, month, 1);
   const todayMonthStart = new Date(today.getFullYear(), today.getMonth(), 1);
-  const maxMonthStart = new Date(maxDate.getFullYear(), maxDate.getMonth(), 1);
 
   if (prevMonthBtn) {
     prevMonthBtn.disabled = currentMonthStart <= todayMonthStart;
     prevMonthBtn.classList.toggle('disabled', prevMonthBtn.disabled);
   }
   if (nextMonthBtn) {
-    nextMonthBtn.disabled = currentMonthStart >= maxMonthStart;
-    nextMonthBtn.classList.toggle('disabled', nextMonthBtn.disabled);
+    nextMonthBtn.disabled = false;
+    nextMonthBtn.classList.remove('disabled');
   }
 
   for (let day = 1; day <= totalDays; day++) {
@@ -177,13 +171,12 @@ function renderCalendar(month, year) {
     const thisDate = new Date(year, month, day);
     thisDate.setHours(0, 0, 0, 0);
 
-    // Kiểm tra: Không chọn ngày trong quá khứ VÀ không chọn quá 3 tuần
+    // Chỉ chặn không cho chọn ngày trong quá khứ
     const isPast = thisDate < today;
-    const isOver3Weeks = thisDate > maxDate;
 
-    if (isPast || isOver3Weeks) {
+    if (isPast) {
       dayEl.classList.add('disabled');
-      dayEl.title = isPast ? 'Không thể chọn ngày trong quá khứ' : 'Chỉ có thể chọn trong vòng 3 tuần tới';
+      dayEl.title = 'Không thể chọn ngày trong quá khứ';
       calendarDays.appendChild(dayEl);
       continue;
     }
