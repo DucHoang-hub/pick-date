@@ -150,6 +150,25 @@ function renderCalendar(month, year) {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
+  // Giới hạn 3 tuần (21 ngày) tính từ ngày hiện tại
+  const maxDate = new Date(today);
+  maxDate.setDate(maxDate.getDate() + 21);
+  maxDate.setHours(23, 59, 59, 999);
+
+  // Điều khiển nút chuyển tháng trước / sau
+  const currentMonthStart = new Date(year, month, 1);
+  const todayMonthStart = new Date(today.getFullYear(), today.getMonth(), 1);
+  const maxMonthStart = new Date(maxDate.getFullYear(), maxDate.getMonth(), 1);
+
+  if (prevMonthBtn) {
+    prevMonthBtn.disabled = currentMonthStart <= todayMonthStart;
+    prevMonthBtn.classList.toggle('disabled', prevMonthBtn.disabled);
+  }
+  if (nextMonthBtn) {
+    nextMonthBtn.disabled = currentMonthStart >= maxMonthStart;
+    nextMonthBtn.classList.toggle('disabled', nextMonthBtn.disabled);
+  }
+
   for (let day = 1; day <= totalDays; day++) {
     const dayEl = document.createElement('div');
     dayEl.className = 'cal-day';
@@ -157,6 +176,17 @@ function renderCalendar(month, year) {
 
     const thisDate = new Date(year, month, day);
     thisDate.setHours(0, 0, 0, 0);
+
+    // Kiểm tra: Không chọn ngày trong quá khứ VÀ không chọn quá 3 tuần
+    const isPast = thisDate < today;
+    const isOver3Weeks = thisDate > maxDate;
+
+    if (isPast || isOver3Weeks) {
+      dayEl.classList.add('disabled');
+      dayEl.title = isPast ? 'Không thể chọn ngày trong quá khứ' : 'Chỉ có thể chọn trong vòng 3 tuần tới';
+      calendarDays.appendChild(dayEl);
+      continue;
+    }
 
     // Đánh dấu hôm nay
     if (thisDate.getTime() === today.getTime()) {
@@ -181,6 +211,7 @@ function renderCalendar(month, year) {
 }
 
 prevMonthBtn.addEventListener('click', () => {
+  if (prevMonthBtn.disabled) return;
   currentCalMonth--;
   if (currentCalMonth < 0) {
     currentCalMonth = 11;
@@ -190,6 +221,7 @@ prevMonthBtn.addEventListener('click', () => {
 });
 
 nextMonthBtn.addEventListener('click', () => {
+  if (nextMonthBtn.disabled) return;
   currentCalMonth++;
   if (currentCalMonth > 11) {
     currentCalMonth = 0;
@@ -297,9 +329,9 @@ btnConfirm.addEventListener('click', async () => {
   switchScreen(3);
 });
 
-// ==========================================
-// SCREEN 3: HIỂN THỊ TỔNG KẾT THEO MẪU ẢNH
-// ==========================================
+// Giới hạn số lần chọn lại tối đa là 3 lần
+let reselectCount = 0;
+const MAX_RESELECT = 3;
 
 function updateSummaryScreen() {
   const dayWeek = getDayOfWeek(state.selectedDate);
@@ -321,11 +353,34 @@ function updateSummaryScreen() {
   document.getElementById('tableDate').textContent = `${dayWeek}, ${fullDate}`;
   document.getElementById('tableTime').textContent = state.selectedTime;
   document.getElementById('tableFood').textContent = state.selectedFood;
+
+  // Cập nhật nút Chọn lại và số lượt còn lại
+  const btnRestart = document.getElementById('btn-restart');
+  const bottomNote = document.querySelector('.bottom-playful-note');
+  const remaining = MAX_RESELECT - reselectCount;
+
+  if (reselectCount >= MAX_RESELECT) {
+    btnRestart.disabled = true;
+    btnRestart.classList.add('disabled');
+    btnRestart.textContent = 'Hết lượt chọn lại rùi nha 🔒';
+    if (bottomNote) {
+      bottomNote.innerHTML = 'Em đã chọn lại hết 3 lần rồi nha! Lịch chốt cứng rồi, không được bùng đâu đó 😆❤️';
+    }
+  } else {
+    btnRestart.disabled = false;
+    btnRestart.classList.remove('disabled');
+    btnRestart.textContent = `Chọn lại nè (Còn ${remaining} lần)`;
+  }
 }
 
 // Nút Chọn lại nè
 const btnRestart = document.getElementById('btn-restart');
 btnRestart.addEventListener('click', () => {
+  if (reselectCount >= MAX_RESELECT) {
+    alert('Em đã chọn lại 3 lần rồi nha, anh chốt lịch này luôn rồi nè! 💕');
+    return;
+  }
+  reselectCount++;
   switchScreen(2);
 });
 
