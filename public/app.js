@@ -7,7 +7,7 @@ const state = {
   selectedDate: new Date(),
   selectedTime: '20:05',
   selectedFood: 'Đồ Hàn',
-  inviter: 'Đạo',
+  inviter: 'Đức',
   invitee: 'Hai Anh'
 };
 
@@ -226,15 +226,45 @@ customTimeInput.addEventListener('input', (e) => {
   }
 });
 
-// Chọn món ăn
+// Chọn món ăn / hoạt động
 const foodItems = document.querySelectorAll('.food-item');
+const customFoodWrap = document.getElementById('customFoodWrap');
+const customFoodInput = document.getElementById('customFoodInput');
+
+const currentActiveFood = document.querySelector('.food-item.active') || foodItems[0];
+if (currentActiveFood) {
+  state.selectedFood = currentActiveFood.dataset.food;
+  currentActiveFood.classList.add('active');
+  if (currentActiveFood.dataset.food === 'Tự chọn' && customFoodWrap) {
+    customFoodWrap.style.display = 'block';
+  }
+}
+
 foodItems.forEach(item => {
   item.addEventListener('click', () => {
     foodItems.forEach(f => f.classList.remove('active'));
     item.classList.add('active');
-    state.selectedFood = item.dataset.food;
+
+    if (item.dataset.food === 'Tự chọn') {
+      if (customFoodWrap) customFoodWrap.style.display = 'block';
+      if (customFoodInput) {
+        customFoodInput.focus();
+        state.selectedFood = customFoodInput.value.trim() || 'Tự chọn';
+      } else {
+        state.selectedFood = 'Tự chọn';
+      }
+    } else {
+      if (customFoodWrap) customFoodWrap.style.display = 'none';
+      state.selectedFood = item.dataset.food;
+    }
   });
 });
+
+if (customFoodInput) {
+  customFoodInput.addEventListener('input', (e) => {
+    state.selectedFood = e.target.value.trim() || 'Tự chọn';
+  });
+}
 
 // Cập nhật dòng hiển thị ngày và giờ
 function updateDateTimeSummary() {
@@ -275,11 +305,15 @@ function updateSummaryScreen() {
   const dayWeek = getDayOfWeek(state.selectedDate);
   const fullDate = formatDateFull(state.selectedDate);
 
-  // Cập nhật hộp thông điệp
-  document.getElementById('sumDayWeek').textContent = dayWeek;
-  document.getElementById('sumFullDate').textContent = fullDate;
-  document.getElementById('sumFoodName').textContent = state.selectedFood;
-  document.getElementById('sumTime').textContent = state.selectedTime;
+  // Cập nhật hộp thông điệp tự nhiên
+  const finalMsgEl = document.getElementById('finalMessageText');
+  if (finalMsgEl) {
+    if (state.selectedFood.toLowerCase().includes('phim')) {
+      finalMsgEl.innerHTML = `Được rui, vậy <strong>${dayWeek}</strong>, <strong>${fullDate}</strong> mình <strong>đi xem phim</strong> lúc <strong>${state.selectedTime}</strong> nha ❤️`;
+    } else {
+      finalMsgEl.innerHTML = `Được rui, vậy <strong>${dayWeek}</strong>, <strong>${fullDate}</strong> mình đi ăn/uống <strong>${state.selectedFood}</strong> lúc <strong>${state.selectedTime}</strong> nha ❤️`;
+    }
+  }
 
   // Cập nhật bảng chi tiết
   document.getElementById('inviterName').textContent = state.inviter;

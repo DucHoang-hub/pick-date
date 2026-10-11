@@ -25,8 +25,8 @@ async function sendTelegramMessage(data) {
 
   const message = `🔔 *TING TING! ĐÃ CÓ LỊCH HẸN MỚI NÈ!* 💕\n` +
     `━━━━━━━━━━━━━━━━━━━━━━\n` +
-    `👤 *Người mời:* ${data.inviter || 'Đạo'}\n` +
-    `💌 *Người được mời:* ${data.invitee || 'Hai Anh'}\n` +
+    `👤 *Người mời:* ${data.inviter || 'Đức'}\n` +
+    `💌 *Người được mời:* ${data.invitee || 'Hải Anh'}\n` +
     `📅 *Ngày hẹn:* ${data.dayOfWeek}, ${data.date}\n` +
     `⏰ *Giờ hẹn:* ${data.time}\n` +
     `🍽️ *Món ăn:* ${data.food}\n` +

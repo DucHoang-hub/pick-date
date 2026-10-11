@@ -98,9 +98,9 @@
 
       <!-- List chọn món -->
       <div class="section-card food-card">
-        <div class="section-title">🍽️ Em muốn ăn món gì nè?</div>
+        <div class="section-title">🍽️ Em muốn ăn hay đi chơi gì nè?</div>
         <div class="food-grid" id="foodGrid">
-          <div class="food-item active" data-food="Đồ Hàn" data-icon="🥘">
+          <!-- <div class="food-item active" data-food="Đồ Hàn" data-icon="🥘">
             <span class="food-icon">🥘</span>
             <span class="food-name">Đồ Hàn</span>
           </div>
@@ -119,19 +119,32 @@
           <div class="food-item" data-food="Pizza & Mì Ý" data-icon="🍕">
             <span class="food-icon">🍕</span>
             <span class="food-name">Pizza & Mì Ý</span>
-          </div>
-          <div class="food-item" data-food="Trà sữa & Cafe" data-icon="🧋">
+          </div> -->
+          <div class="food-item active" data-food="Trà sữa & Cafe" data-icon="☕">
             <span class="food-icon">☕</span>
             <span class="food-name">Trà sữa & Cafe</span>
           </div>
-          <div class="food-item" data-food="Món Việt" data-icon="🍜">
+          <!-- <div class="food-item" data-food="Món Việt" data-icon="🍜">
             <span class="food-icon">🍜</span>
             <span class="food-name">Món Việt</span>
-          </div>
-          <div class="food-item" data-food="Ăn vặt vỉa hè" data-icon="🍢">
+          </div> -->
+          <!-- <div class="food-item" data-food="Ăn vặt vỉa hè" data-icon="🍢">
             <span class="food-icon">🍢</span>
             <span class="food-name">Ăn vặt vỉa hè</span>
+          </div> -->
+          <div class="food-item" data-food="Đi xem phim" data-icon="🎬">
+            <span class="food-icon">🎬</span>
+            <span class="food-name">Đi xem phim</span>
           </div>
+          <div class="food-item" data-food="Tự chọn" data-icon="✍️" id="customFoodOption">
+            <span class="food-icon">✍️</span>
+            <span class="food-name">Tự chọn</span>
+          </div>
+        </div>
+
+        <!-- Ô input nhập tự chọn (hiện khi bấm Tự chọn) -->
+        <div class="custom-food-wrap" id="customFoodWrap" style="display: none;">
+          <input type="text" id="customFoodInput" placeholder="Nhập món hoặc nơi em muốn đi nè... ✨" maxlength="60">
         </div>
       </div>
 
@@ -167,7 +180,7 @@
       <div class="receipt-card details-table">
         <div class="table-row">
           <span class="row-label">Người mời</span>
-          <span class="row-value" id="inviterName">Đạo</span>
+          <span class="row-value" id="inviterName">Đức</span>
         </div>
         <div class="table-row">
           <span class="row-label">Người được mời</span>

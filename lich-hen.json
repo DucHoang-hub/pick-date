@@ -1,0 +1,29 @@
+[
+  {
+    "date": "13/10/2026",
+    "dayOfWeek": "Thứ Ba",
+    "time": "20:05",
+    "food": "Tự chọn",
+    "inviter": "Đức",
+    "invitee": "Hai Anh",
+    "createdAt": "00:33:13 12/10/2026"
+  },
+  {
+    "date": "15/10/2026",
+    "dayOfWeek": "Thứ Năm",
+    "time": "20:30",
+    "food": "Trà sữa & Cafe",
+    "inviter": "Đức",
+    "invitee": "Hai Anh",
+    "createdAt": "00:33:23 12/10/2026"
+  },
+  {
+    "date": "14/10/2026",
+    "dayOfWeek": "Thứ Tư",
+    "time": "20:30",
+    "food": "Trà sữa & Cafe",
+    "inviter": "Đức",
+    "invitee": "Hai Anh",
+    "createdAt": "00:35:20 12/10/2026"
+  }
+]

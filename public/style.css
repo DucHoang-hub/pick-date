@@ -522,6 +522,38 @@ body {
   color: #e11d48;
 }
 
+.custom-food-wrap {
+  margin-top: 12px;
+  animation: fadeIn 0.25s ease;
+}
+
+.custom-food-wrap input {
+  width: 100%;
+  padding: 11px 16px;
+  background: #ffffff;
+  border: 1.5px solid #f472b6;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #1f2937;
+  outline: none;
+  box-shadow: 0 3px 10px rgba(244, 114, 182, 0.15);
+  transition: all 0.2s ease;
+}
+
+.custom-food-wrap input:focus {
+  border-color: #ec4899;
+  box-shadow: 0 4px 14px rgba(236, 72, 153, 0.25);
+  background: #fffbfe;
+}
+
+.custom-food-wrap input::placeholder {
+  color: #9ca3af;
+  font-weight: 500;
+  font-size: 0.88rem;
+}
+
 .confirm-action {
   margin-top: 6px;
 }

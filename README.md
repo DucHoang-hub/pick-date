@@ -47,8 +47,8 @@ Một trang web hẹn hò lãng mạn tone hồng pastel ngọt ngào, hiển th
   > "Được rui, vậy **[Thứ X, DD/MM/YYYY]** mình đi ăn **[Tên món]** lúc **[HH:MM]** nha ❤️"
   > "Anh chốt lịch rồi đó, em chỉ cần chuẩn bị xinh xinh là được thôi ✨"
 - **Card chi tiết có viền nét đứt:**
-  - Người mời: `Đạo`
-  - Người được mời: `Hai Anh`
+  - Người mời: `Đức`
+  - Người được mời: `Hải Anh`
   - Ngày: `[Thứ X, DD/MM/YYYY]`
   - Giờ: `[HH:MM]`
   - Món: `[Tên món đã chọn]`
@@ -96,4 +96,4 @@ Tất cả các nội dung bạn cần điền nằm ở:
   - Thẻ `<img>`: Link ảnh bạn muốn hiển thị
   - Dòng `class="screen2-h1"` & `class="screen2-h2"`: Tiêu đề Screen 2
 - [public/app.js](file:///d:/pick-date/public/app.js):
-  - Dòng `inviter: 'Đạo'` và `invitee: 'Hai Anh'`: Tên người mời và người được mời.
+  - Dòng `inviter: 'Đức'` và `invitee: 'Hai Anh'`: Tên người mời và người được mời.
